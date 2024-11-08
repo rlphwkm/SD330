@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Fridge</title>
+    <link rel="stylesheet" href="./FRIDGE/styles.css">
+    <script src="./FRIDGE/script.js" defer></script>
+</head>
+<body>
+    <div id="fridgeDisplay">
+        <div id="header">
+            <div id="onOffBtn" onclick="toggleDisplay()">OFF</div>
+            <div id="clock" onclick="toggleTimeFormat()">00:00:00</div>
+            <div id="weather">Sunny, 25°C</div>
+        </div>
+
+        <div id="navButtons">
+            <button class="navButton" id="tempBtn" onclick="showContent('temperature')">Temperature</button>
+            <button class="navButton" id="shelfBtn" onclick="showContent('shelf')">Shelf View</button>
+            <button class="navButton" id="tvBtn" onclick="showContent('tv')">TV</button>
+            <button class="navButton" id="browserBtn" onclick="showContent('browser')">Browser</button>
+            <button class="navButton" id="settingsBtn" onclick="showContent('settings')">Settings</button>
+            <button class="navButton" id="musicBtn" onclick="showContent('music')">Music Player</button>
+            <button class="navButton" id="timerBtn" onclick="showContent('timer')">Timer</button>
+        </div>
+
+        <div id="content">
+            <div id="shoppingList">
+                <h2>Shopping List</h2>
+                <ul id="list">
+                    <li>Milk</li>
+                    <li>Eggs</li>
+                    <li>Butter</li>
+                    <li>Cheese</li>
+                    <li>Yogurt</li>
+                </ul>
+                <input type="text" id="itemInput" placeholder="Add item">
+                <button onclick="addItem()">Add</button>
+            </div>
+            <!-- Timer Section for 1-minute countdown -->
+            <div id="timerDisplay" style="display:none;">
+                <h2>Minute Timer</h2>
+                <button onclick="startMinuteTimer()">Start 1-Minute Timer</button>
+                <p id="timerDisplayText">00:00</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
