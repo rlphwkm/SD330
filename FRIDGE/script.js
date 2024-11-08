@@ -3,7 +3,7 @@ let timeFormat24 = true;
 let currentTemperature = Math.floor(Math.random() * 10) + 32;
 let tempInCelsius = false;
 let minuteTimer;
-let timerAlarm = new Audio('alarm.wav'); // Alarm sound file
+let timerAlarm = new Audio('./FRIDGE/alarm.wav'); // Alarm sound file
 let tvAudio = new Audio('./FRIDGE/generic-news-music.wav'); // News music file for TV view
 let musicPlayer = new Audio('./FRIDGE/background-music.wav'); // Separate song file for music player
 
