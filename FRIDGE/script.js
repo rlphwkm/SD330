@@ -73,7 +73,7 @@ function showContent(type) {
             tvAudio.play();        // Play news music when TV view is displayed
             break;
         case 'browser':
-            content.innerHTML = `<iframe src="https://duckduckgo.com" title="Embedded Browser"></iframe>`;
+            content.innerHTML = `<iframe src="https://google.com" title="Embedded Browser"></iframe>`;
             break;
         case 'settings':
             content.innerHTML = `<h2 style="text-align:center;">Settings Menu</h2>`;
