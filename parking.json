@@ -1,0 +1,139 @@
+{
+    "parkingLots": [
+      {
+        "name": "Foy Parking Lot",
+        "map": "mapFoy.jpg",
+        "totalSpaces": 50,
+        "comments": "Located in center of campus.",
+        "operationalHours": "6 AM - 10 PM",
+        "securityLevel": "High",
+        "parkingSpaces": [
+          {
+            "spaceID": 1,
+            "type": "Student",
+            "status": "Available",
+            "reservedDateTime": null,
+            "filledDateTime": null
+          },
+          {
+            "spaceID": 2,
+            "type": "Faculty/Staff",
+            "status": "Filled",
+            "reservedDateTime": null,
+            "filledDateTime": "2024-11-25T08:30:00"
+          },
+          {
+            "spaceID": 3,
+            "type": "Handicap",
+            "status": "Available",
+            "reservedDateTime": null,
+            "filledDateTime": null
+          },
+          {
+            "spaceID": 4,
+            "type": "Student",
+            "status": "Reserved",
+            "reservedDateTime": "2024-11-25T10:00:00",
+            "filledDateTime": null
+          },
+          {
+            "spaceID": 5,
+            "type": "Faculty/Staff",
+            "status": "Available",
+            "reservedDateTime": null,
+            "filledDateTime": null
+          },
+          {
+            "spaceID": 6,
+            "type": "Handicap",
+            "status": "Filled",
+            "reservedDateTime": null,
+            "filledDateTime": "2024-11-25T09:15:00"
+          },
+          {
+            "spaceID": 7,
+            "type": "Student",
+            "status": "Available",
+            "reservedDateTime": null,
+            "filledDateTime": null
+          },
+          {
+            "spaceID": 8,
+            "type": "Faculty/Staff",
+            "status": "Reserved",
+            "reservedDateTime": "2024-11-25T11:00:00",
+            "filledDateTime": null
+          },
+          {
+            "spaceID": 9,
+            "type": "Handicap",
+            "status": "Available",
+            "reservedDateTime": null,
+            "filledDateTime": null
+          },
+          {
+            "spaceID": 10,
+            "type": "Student",
+            "status": "Available",
+            "reservedDateTime": null,
+            "filledDateTime": null
+          },
+          {
+            "spaceID": 11,
+            "type": "Faculty/Staff",
+            "status": "Filled",
+            "reservedDateTime": null,
+            "filledDateTime": "2024-11-25T08:00:00"
+          },
+          {
+            "spaceID": 12,
+            "type": "Handicap",
+            "status": "Available",
+            "reservedDateTime": null,
+            "filledDateTime": null
+          }
+        ]
+      },
+      {
+        "name": "River View Parking Lot",
+        "map": "mapRiverView.jpg",
+        "totalSpaces": 100,
+        "comments": "Close to the dining hall.",
+        "operationalHours": "6 AM - 10 PM",
+        "securityLevel": "Medium"
+      },
+      {
+        "name": "North End Parking Lot",
+        "map": "mapNorth.jpg",
+        "totalSpaces": 75,
+        "comments": "Adjacent to the upper class housing.",
+        "operationalHours": "6 AM - 10 PM",
+        "securityLevel": "Medium"
+      },
+      {
+        "name": "Beck Parking Lot",
+        "map": "mapBeck.jpg",
+        "totalSpaces": 60,
+        "comments": "Near the sports complex.",
+        "operationalHours": "24/7",
+        "securityLevel": "Low"
+      },
+      {
+        "name": "McCann Parking Lot",
+        "map": "mapMcCann.jpg",
+        "totalSpaces": 80,
+        "comments": "Facing main athletic center.",
+        "operationalHours": "6 AM - 8 PM",
+        "securityLevel": "Medium"
+      },
+      {
+        "name": "Donnelly Parking Lot",
+        "map": "mapWest.jpg",
+        "totalSpaces": 90,
+        "comments": "Accessible for deliveries.",
+        "operationalHours": "24/7",
+        "securityLevel": "High"
+      }
+    ]
+  }
+  
