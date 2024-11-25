@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Lots</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        caption {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Parking Lots Information</h1>
+    <table id="parkingTable">
+        <caption>Parking Lots Details</caption>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Map</th>
+                <th>Total Spaces</th>
+                <th>Comments</th>
+                <th>Operational Hours</th>
+                <th>Security Level</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be here -->
+        </tbody>
+    </table>
+
+    <script>
+        // URL of JSON file
+        const jsonURL = './parking.json';
+
+        fetch(jsonURL)
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.querySelector('#parkingTable tbody');
+                data.parkingLots.forEach(lot => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${lot.name}</td>
+                        <td><img src="${lot.map}" alt="${lot.name} Map" style="width:100px;"></td>
+                        <td>${lot.totalSpaces}</td>
+                        <td>${lot.comments}</td>
+                        <td>${lot.operationalHours}</td>
+                        <td>${lot.securityLevel}</td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => console.error('Error loading JSON:', error));
+    </script>
+</body>
+</html>
