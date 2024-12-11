@@ -7,6 +7,7 @@
         "comments": "Located in center of campus.",
         "operationalHours": "6 AM - 10 PM",
         "securityLevel": "High",
+        "emptySpots": "31",
         "parkingSpaces": [
           {
             "spaceID": 1,
@@ -100,7 +101,8 @@
         "totalSpaces": 100,
         "comments": "Close to the dining hall.",
         "operationalHours": "6 AM - 10 PM",
-        "securityLevel": "Medium"
+        "securityLevel": "Medium",
+        "emptySpots": "69"
       },
       {
         "name": "North End Parking Lot",
@@ -108,7 +110,8 @@
         "totalSpaces": 75,
         "comments": "Adjacent to the upper class housing.",
         "operationalHours": "6 AM - 10 PM",
-        "securityLevel": "Medium"
+        "securityLevel": "Medium",
+        "emptySpots": "19"
       },
       {
         "name": "Beck Parking Lot",
@@ -116,7 +119,8 @@
         "totalSpaces": 60,
         "comments": "Near the sports complex.",
         "operationalHours": "24/7",
-        "securityLevel": "Low"
+        "securityLevel": "Low",
+        "emptySpots": "29"
       },
       {
         "name": "McCann Parking Lot",
@@ -124,7 +128,8 @@
         "totalSpaces": 80,
         "comments": "Facing main athletic center.",
         "operationalHours": "6 AM - 8 PM",
-        "securityLevel": "Medium"
+        "securityLevel": "Medium",
+        "emptySpots": "35"
       },
       {
         "name": "Donnelly Parking Lot",
@@ -132,7 +137,8 @@
         "totalSpaces": 90,
         "comments": "Accessible for deliveries.",
         "operationalHours": "24/7",
-        "securityLevel": "High"
+        "securityLevel": "High",
+        "emptySpots": "56"
       }
     ]
   }

@@ -3,67 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parking Lots JSON test</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #ccc;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f4f4f4;
-        }
-        caption {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-    </style>
+    <title>Parking App</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Parking Lots Information</h1>
-    <table id="parkingTable">
-        <caption>Parking Lots Details</caption>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Map</th>
-                <th>Total Spaces</th>
-                <th>Comments</th>
-                <th>Operational Hours</th>
-                <th>Security Level</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Data will be here -->
-        </tbody>
-    </table>
-
+    <header>
+        <nav>
+            <ul class="menu-bar">
+                <li><a href="./parking.html">Home</a></li>
+                <li><a href="./lots.html">Lots</a></li>
+                <li><a href="./map.html">Map</a></li>
+                <li><a href="./about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <nav class="breadcrumbs">
+            <a href="index.html">Home</a>
+        </nav>
+        <section class="content-container">
+            <div class="parking-lots">
+                <h2>Parking Lots</h2>
+                <ul id="parking-list"></ul>
+            </div>
+            <div class="map-container">
+                <h2>Location</h2>
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10112.53737923225!2d-73.93939532446635!3d41.72213467204544!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89dd3dfdfc580a91%3A0x6db18d47ff70fe6c!2sMarist%20College!5e1!3m2!1sen!2sus!4v1733941026109!5m2!1sen!2sus" 
+                    width="100%" 
+                    height="400" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </section>
+    </main>
     <script>
-        // URL of JSON file
-        const jsonURL = './parking.json';
 
-        fetch(jsonURL)
-            .then(response => response.json())
-            .then(data => {
-                const tableBody = document.querySelector('#parkingTable tbody');
-                data.parkingLots.forEach(lot => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${lot.name}</td>
-                        <td><img src="${lot.map}" alt="${lot.name} Map" style="width:100px;"></td>
-                        <td>${lot.totalSpaces}</td>
-                        <td>${lot.comments}</td>
-                        <td>${lot.operationalHours}</td>
-                        <td>${lot.securityLevel}</td>
-                    `;
-                    tableBody.appendChild(row);
-                });
-            })
-            .catch(error => console.error('Error loading JSON:', error));
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch('./parking.json')
+                .then(response => response.json())
+                .then(data => {
+                    const parkingList = document.getElementById('parking-list');
+                    data.parkingLots.forEach(lot => {
+                        const lotCard = document.createElement('div');
+                        lotCard.classList.add('lot-card');
+                
+                        const link = document.createElement('a');
+                        link.textContent = lot.name;
+                        link.href = `lots.html?name=${encodeURIComponent(lot.name)}`;
+                        link.classList.add('lot-link');
+
+                        const details = document.createElement('p');
+                        details.innerHTML = `
+                            <strong>Total Spaces:</strong> ${lot.totalSpaces}<br>
+                            <strong>Empty Spots:</strong> ${lot.emptySpots}<br>
+                            <strong>Security Level:</strong> ${lot.securityLevel}
+                        `;
+                
+                        lotCard.appendChild(link);
+                        lotCard.appendChild(details);
+                        parkingList.appendChild(lotCard);
+                    });
+                })
+                .catch(error => console.error('Error fetching parking lots:', error));
+        });
+
+
     </script>
+    <footer>
+        <p>&copy; 2024 Ralph Wakim</p>
+    </footer>    
 </body>
 </html>

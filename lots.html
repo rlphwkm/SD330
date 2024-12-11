@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Lots</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="menu-bar">
+                <li><a href="./parking.html">Home</a></li>
+                <li><a href="./lots.html">Lots</a></li>
+                <li><a href="./map.html">Map</a></li>
+                <li><a href="./about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <nav class="breadcrumbs">
+            <a href="index.html">Home</a> > <a href="lots.html">Parking Lots</a>
+        </nav>
+        <section class="content-container">
+            <div class="parking-lots">
+                <h2>Available Parking Lots</h2>
+                <input type="text" id="search-bar" placeholder="Search parking lots...">
+                <div id="parking-details"></div>
+            </div>
+        </section>
+    </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            let parkingData = [];
+
+            const parkingDetails = document.getElementById('parking-details');
+            const searchBar = document.getElementById('search-bar');
+
+            fetch('./parking.json')
+                .then(response => response.json())
+                .then(data => {
+                    parkingData = data.parkingLots;
+                    displayParkingLots(parkingData);
+
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const lotName = urlParams.get('name');
+                    if (lotName) {
+                        const matchingLot = parkingData.find(lot => lot.name === lotName);
+                        if (matchingLot) {
+                            scrollToAndExpandLot(matchingLot);
+                        }
+                    }
+                })
+                .catch(error => console.error('Error fetching parking lot details:', error));
+
+            searchBar.addEventListener('input', () => {
+                const searchQuery = searchBar.value.toLowerCase();
+                const filteredLots = parkingData.filter(lot =>
+                    lot.name.toLowerCase().includes(searchQuery) ||
+                    lot.comments.toLowerCase().includes(searchQuery) ||
+                    lot.securityLevel.toLowerCase().includes(searchQuery)
+                );
+                displayParkingLots(filteredLots);
+            });
+
+            function displayParkingLots(lots) {
+                parkingDetails.innerHTML = '';
+                lots.forEach(lot => {
+                    const lotContainer = document.createElement('div');
+                    lotContainer.classList.add('lot-container');
+
+                    const lotHeader = document.createElement('button');
+                    lotHeader.textContent = lot.name;
+                    lotHeader.classList.add('toggle-button');
+                    lotHeader.addEventListener('click', () => {
+                        const expanded = document.querySelector('.lot-container.expanded');
+                        if (expanded && expanded !== lotContainer) {
+                            expanded.classList.remove('expanded');
+                            expanded.querySelector('.lot-details').style.display = 'none';
+                        }
+                        lotContainer.classList.toggle('expanded');
+                        lotDetails.style.display = lotDetails.style.display === 'none' ? 'block' : 'none';
+                    });
+                    lotContainer.appendChild(lotHeader);
+
+                    const lotDetails = document.createElement('div');
+                    lotDetails.classList.add('lot-details');
+                    lotDetails.innerHTML = `
+                        <p>
+                            <strong>Comments:</strong> ${lot.comments}<br>
+                            <strong>Operational Hours:</strong> ${lot.operationalHours}<br>
+                            <strong>Security Level:</strong> ${lot.securityLevel}<br>
+                            <strong>Total Spaces:</strong> ${lot.totalSpaces}<br>
+                            <strong>Empty Spots:</strong> ${lot.emptySpots}
+                        </p>
+                    `;
+
+                    if (lot.parkingSpaces) {
+                        const spaceList = document.createElement('ul');
+                        spaceList.innerHTML = '<strong>Parking Spaces:</strong>';
+
+                        lot.parkingSpaces.forEach(space => {
+                            const spaceItem = document.createElement('li');
+                            spaceItem.innerHTML = `
+                                Space ID: ${space.spaceID} | 
+                                Type: ${space.type} | 
+                                Status: ${space.status} | 
+                                Reserved: ${space.reservedDateTime || 'N/A'} | 
+                                Filled: ${space.filledDateTime || 'N/A'}
+                            `;
+                            spaceList.appendChild(spaceItem);
+                        });
+                        lotDetails.appendChild(spaceList);
+                    }
+
+                    lotDetails.style.display = 'none';
+                    lotContainer.appendChild(lotDetails);
+                    parkingDetails.appendChild(lotContainer);
+                });
+            }
+
+            function scrollToAndExpandLot(lot) {
+                const lotContainer = [...document.querySelectorAll('.lot-container')]
+                    .find(container => container.querySelector('.toggle-button').textContent === lot.name);
+                if (lotContainer) {
+                    lotContainer.classList.add('expanded');
+                    const lotDetails = lotContainer.querySelector('.lot-details');
+                    lotDetails.style.display = 'block';
+                    lotContainer.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    </script>
+    <footer>
+        <p>&copy; 2024 Ralph Wakim</p>
+    </footer>    
+</body>
+</html>
